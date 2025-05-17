@@ -18,7 +18,7 @@ USE `EscolaDeMusica` ;
 -- Table `EscolaDeMusica`.`Orquestra`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `EscolaDeMusica`.`Orquestra` (
-  `idOrquestra` INT NOT NULL,
+  `idOrquestra` INT NOT NULL auto_increment,
   `dataCriacao` DATE NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `pais` VARCHAR(20) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `EscolaDeMusica`.`Sinfonia` (
   `nome` VARCHAR(45) NOT NULL,
   `compositor` VARCHAR(45) NOT NULL,
   `dataCriacao` DATE NOT NULL,
-  `Orquestra_idOrquestra` INT NOT NULL,
+  `Orquestra_idOrquestra` INT NULL,
   PRIMARY KEY (`idSinfonia`),
   INDEX `fk_Sinfonia_Orquestra1_idx` (`Orquestra_idOrquestra` ASC) VISIBLE,
   CONSTRAINT `fk_Sinfonia_Orquestra1`
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `EscolaDeMusica`.`Musico` (
   `dataNasc` DATE NOT NULL,
   `identidade` VARCHAR(14) NOT NULL,
   `nacionalidade` VARCHAR(14) NOT NULL,
-  `Orquestra_idOrquestra` INT NOT NULL,
+  `Orquestra_idOrquestra` INT NULL,
   PRIMARY KEY (`idMusico`),
   INDEX `fk_Musico_Orquestra1_idx` (`Orquestra_idOrquestra` ASC) VISIBLE,
   CONSTRAINT `fk_Musico_Orquestra1`
@@ -106,8 +106,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `EscolaDeMusica`.`Telefone` (
   `idTelefone` INT NOT NULL,
   `numero` VARCHAR(45) NOT NULL,
-  `Orquestra_idOrquestra` INT NOT NULL,
-  `Musico_idMusico` INT NOT NULL,
+  `Orquestra_idOrquestra` INT NULL,
+  `Musico_idMusico` INT NULL,
   PRIMARY KEY (`idTelefone`),
   INDEX `fk_Telefone_Orquestra1_idx` (`Orquestra_idOrquestra` ASC) VISIBLE,
   INDEX `fk_Telefone_Musico1_idx` (`Musico_idMusico` ASC) VISIBLE,
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `EscolaDeMusica`.`Endereco` (
   `estado` VARCHAR(20) NOT NULL,
   `CEP` VARCHAR(14) NOT NULL,
   `complemento` VARCHAR(45) NULL,
-  `Orquestra_idOrquestra` INT NOT NULL,
-  `Musico_idMusico` INT NOT NULL,
+  `Orquestra_idOrquestra` INT NULL,
+  `Musico_idMusico` INT NULL,
   PRIMARY KEY (`idEndereco`),
   INDEX `fk_Endereco_Orquestra1_idx` (`Orquestra_idOrquestra` ASC) VISIBLE,
   INDEX `fk_Endereco_Musico1_idx` (`Musico_idMusico` ASC) VISIBLE,
@@ -213,3 +213,4 @@ USE `EscolaDeMusica`;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
